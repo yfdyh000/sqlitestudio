@@ -175,7 +175,7 @@ jobs:
                 ls -l
 
             - name: Upload package artifact
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v1
               with:
                 name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
                 path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
