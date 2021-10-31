@@ -28,6 +28,7 @@ void AboutDialog::init(InitialMode initialMode)
 {
     ui->setupUi(this);
     ui->leftIcon->setPixmap(ICONS.SQLITESTUDIO_APP.toQIcon().pixmap(200, 200));
+    ui->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
 
     ui->tabWidget->setCurrentWidget(initialMode == ABOUT ? ui->about : ui->license);
 
