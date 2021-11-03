@@ -13,9 +13,7 @@ env:
 
 name: Windows 32-bit release build
 
-on:
-    repository_dispatch:
-        types: [win32_release]
+on: push
 
 jobs:
     build:
@@ -184,3 +182,9 @@ jobs:
               with:
                 name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-installer.exe
                 path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-installer.exe
+
+            - name: Upload
+              uses: actions/upload-artifact@v2
+              with:
+                name: pack.zip
+                path: output

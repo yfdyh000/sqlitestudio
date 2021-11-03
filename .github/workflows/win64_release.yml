@@ -13,7 +13,7 @@ env:
 
 name: Windows 64-bit release build
 
-on: push
+#on: push
 
 jobs:
     build:
