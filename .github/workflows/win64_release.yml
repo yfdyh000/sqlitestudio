@@ -26,13 +26,6 @@ jobs:
         runs-on: windows-2019
 
         steps:
-            - name: Cache Qt
-              id: cache-qt
-              uses: actions/cache@v1
-              with:
-                path: ${{ github.workspace }}\..\Qt
-                key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache1
-
             - name: Cache ccache
               id: cache-ccache
               uses: actions/cache@v1
