@@ -15,7 +15,8 @@ env:
     CCACHE_DIR: $GITHUB_WORKSPACE/.ccache
     CCACHE_COMPRESS: true
     CCACHE_COMPRESSLEVEL: 1
-    CCACHE_MAXSIZE: 400M
+    CCACHE_MAXSIZE: 1G
+    CCACHE_COMPILERCHECK: content
 
 name: Windows 64-bit release build
 
@@ -68,8 +69,7 @@ jobs:
             - name: Workaround for updating qtbase.qm
               shell: bash
               run: |
-                curl https://raw.githubusercontent.com/qt/qttranslations/6.2.1/translations/qtbase_zh_CN.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_CN.ts
-                curl https://raw.githubusercontent.com/qt/qttranslations/6.2.1/translations/qtbase_zh_TW.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_TW.ts
+                curl https://raw.githubusercontent.com/qt/qttranslations/6.2.1/translations/qtbase_zh_CN.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_CN.ts  https://raw.githubusercontent.com/qt/qttranslations/6.2.1/translations/qtbase_zh_TW.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_TW.ts
 
             - name: Install dependencies
               shell: bash
