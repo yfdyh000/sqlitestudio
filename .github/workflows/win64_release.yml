@@ -68,8 +68,8 @@ jobs:
             - name: Workaround for updating qtbase.qm
               shell: bash
               run: |
-                wget https://github.com/qt/qttranslations/raw/dev/translations/qtbase_zh_CN.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_CN.ts
-                wget https://github.com/qt/qttranslations/raw/dev/translations/qtbase_zh_TW.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_TW.ts
+                wget https://raw.githubusercontent.com/qt/qttranslations/6.2.1/translations/qtbase_zh_CN.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_CN.ts
+                wget https://raw.githubusercontent.com/qt/qttranslations/6.2.1/translations/qtbase_zh_TW.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_TW.ts
 
             - name: Install dependencies
               shell: bash
