@@ -17,6 +17,8 @@ QT       += qml network
 TARGET = coreSQLiteStudio
 TEMPLATE = lib
 
+QMAKE_CXX = ccache $$QMAKE_CXX
+
 win32: {
     LIBS += -lpsapi -limagehlp -lversion
     DEFINES += "SQLITE_API=\"__declspec(dllexport)\""

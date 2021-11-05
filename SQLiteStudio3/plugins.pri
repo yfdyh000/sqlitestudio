@@ -2,6 +2,8 @@ include($$PWD/dirs.pri)
 
 CONFIG += c++17 plugin
 
+QMAKE_CXX = ccache $$QMAKE_CXX
+
 DESTDIR = $$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio/plugins
 OBJECTS_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
 MOC_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
