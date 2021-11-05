@@ -9,8 +9,6 @@ QT       -= gui
 
 include($$PWD/../dirs.pri)
 
-QMAKE_CXX = ccache $$QMAKE_CXX
-
 OBJECTS_DIR = $$OBJECTS_DIR/sqlitestudiocli
 MOC_DIR = $$MOC_DIR/sqlitestudiocli
 UI_DIR = $$UI_DIR/sqlitestudiocli

@@ -16,7 +16,11 @@ env:
     CCACHE_COMPRESS: true
     CCACHE_COMPRESSLEVEL: 1
     CCACHE_MAXSIZE: 400M
+    CC: ccache gcc
+    CPP: ccache cpp
+    CXX: ccache g++
 
+ 
 name: Windows 64-bit release build
 
 on: push

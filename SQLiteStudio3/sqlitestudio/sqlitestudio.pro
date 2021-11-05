@@ -9,8 +9,6 @@ QT       += core gui widgets network
 include($$PWD/../dirs.pri)
 include($$PWD/../utils.pri)
 
-QMAKE_CXX = ccache $$QMAKE_CXX
-
 OBJECTS_DIR = $$OBJECTS_DIR/sqlitestudio
 MOC_DIR = $$MOC_DIR/sqlitestudio
 UI_DIR = $$UI_DIR/sqlitestudio

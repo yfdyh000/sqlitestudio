@@ -4,8 +4,6 @@
 #
 #-------------------------------------------------
 
-QMAKE_CXX = ccache $$QMAKE_CXX
-
 QT       += core gui uitools widgets xml svg
 
 include($$PWD/../dirs.pri)
