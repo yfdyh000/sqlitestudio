@@ -65,6 +65,12 @@ jobs:
               with:
                 ref: ${{ github.event.client_payload.branch }}
 
+            - name: Workaround for updating qtbase.qm
+              shell: bash
+              run: |
+                wget https://github.com/qt/qttranslations/raw/dev/translations/qtbase_zh_CN.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_CN.ts
+                wget https://github.com/qt/qttranslations/raw/dev/translations/qtbase_zh_TW.ts -o SQLiteStudio3/guiSQLiteStudio/translations/qtbase_zh_TW.ts
+
             - name: Install dependencies
               shell: bash
               run: |
@@ -203,9 +209,3 @@ jobs:
               with:
                 name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
                 path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
-
-            - name: Upload
-              uses: actions/upload-artifact@v2
-              with:
-                name: .ccache.zip
-                path: .ccache
