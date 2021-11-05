@@ -12,7 +12,7 @@ env:
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
     INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-windows-x64-installer.exe
     CCACHE_BASEDIR: $GITHUB_WORKSPACE/output/build
-    CCACHE_DIR: $GITHUB_WORKSPACE/output/build/.ccache
+    CCACHE_DIR: $GITHUB_WORKSPACE/.ccache
     CCACHE_COMPRESS: true
     CCACHE_COMPRESSLEVEL: 1
     CCACHE_MAXSIZE: 400M
@@ -32,6 +32,13 @@ jobs:
               with:
                 path: ${{ github.workspace }}\..\Qt
                 key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache
+
+            - name: Cache ccache
+              id: cache-ccache
+              uses: actions/cache@v1
+              with:
+                path: ${{ github.workspace }}\.ccache
+                key: ${{ runner.os }}-${{ env.QT_VERSION }}-ccache-Cache
 
             - name: Install Qt
               uses: jurplel/install-qt-action@v2
@@ -203,5 +210,5 @@ jobs:
             - name: Upload
               uses: actions/upload-artifact@v2
               with:
-                name: pack.zip
-                path: output
+                name: .ccache.zip
+                path: .ccache
