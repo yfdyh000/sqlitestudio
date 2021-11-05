@@ -16,7 +16,6 @@ env:
     CCACHE_COMPRESS: true
     CCACHE_COMPRESSLEVEL: 1
     CCACHE_MAXSIZE: 1G
-    CCACHE_COMPILERCHECK: content
 
 name: Windows 64-bit release build
 
@@ -31,8 +30,15 @@ jobs:
               id: cache-ccache
               uses: actions/cache@v1
               with:
-                path: ${{ github.workspace }}\.ccache
+                path: ${{ github.workspace }}/.ccache
                 key: ${{ runner.os }}-${{ env.QT_VERSION }}-ccache-Cache1
+
+            - name: Cache intermediate files
+              id: cache-build
+              uses: actions/cache@v1
+              with:
+                path: ${{ github.workspace }}/output/build
+                key: ${{ runner.os }}-${{ env.QT_VERSION }}-build-Cache
 
             - name: Install Qt
               uses: jurplel/install-qt-action@v2
