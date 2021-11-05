@@ -31,14 +31,14 @@ jobs:
               uses: actions/cache@v1
               with:
                 path: ${{ github.workspace }}\..\Qt
-                key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache
+                key: ${{ runner.os }}-${{ env.QT_VERSION }}-Qt-Cache1
 
             - name: Cache ccache
               id: cache-ccache
               uses: actions/cache@v1
               with:
                 path: ${{ github.workspace }}\.ccache
-                key: ${{ runner.os }}-${{ env.QT_VERSION }}-ccache-Cache
+                key: ${{ runner.os }}-${{ env.QT_VERSION }}-ccache-Cache1
 
             - name: Install Qt
               uses: jurplel/install-qt-action@v2
