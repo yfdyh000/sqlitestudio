@@ -11,12 +11,15 @@ env:
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
     INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-windows-x64-installer.exe
+    CCACHE_BASEDIR: $GITHUB_WORKSPACE/output/build
+    CCACHE_DIR: $GITHUB_WORKSPACE/output/build/.ccache
+    CCACHE_COMPRESS: true
+    CCACHE_COMPRESSLEVEL: 1
+    CCACHE_MAXSIZE: 400M
 
 name: Windows 64-bit release build
 
-on:
-    repository_dispatch:
-        types: [win64_release]
+on: push
 
 jobs:
     build:
@@ -53,7 +56,10 @@ jobs:
               with:
                 python-version: ${{ env.PYTHON_VERSION }}
                 architecture: 'x64'
- 
+
+            - name: Setup ccache
+              uses: chirag-droid/setup-ccache@v0.1.0
+
             - name: Clone repo
               uses: actions/checkout@v2
               with:
@@ -193,3 +199,9 @@ jobs:
               with:
                 name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
                 path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
+
+            - name: Upload
+              uses: actions/upload-artifact@v2
+              with:
+                name: pack.zip
+                path: output
