@@ -16,10 +16,6 @@ env:
     CCACHE_COMPRESS: true
     CCACHE_COMPRESSLEVEL: 1
     CCACHE_MAXSIZE: 400M
-    CC: ccache gcc
-    CPP: ccache cpp
-    CXX: ccache g++
-
  
 name: Windows 64-bit release build
 
@@ -63,6 +59,10 @@ jobs:
 
             - name: Setup ccache
               uses: chirag-droid/setup-ccache@v0.1.0
+
+            - name: cc in
+              run: |
+                export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
 
             - name: Clone repo
               uses: actions/checkout@v2
@@ -115,6 +115,10 @@ jobs:
                 qmake.exe CONFIG+=portable "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" ..\..\..\Plugins
                 mingw32-make.exe -j 1
               
+            - name: List ccache stats
+              shell: bash
+              run: ccache -s
+
             - name: Prepare portable dir
               shell: bash
               working-directory: output
