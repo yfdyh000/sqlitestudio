@@ -51,10 +51,9 @@ jobs:
                 architecture: 'x64'
 
             - name: Setup ccache
-              uses: chirag-droid/setup-ccache@v0.1.0
+              uses: hendrikmuhs/ccache-action@v1.0.5
               with:
                 key: ${{ runner.os }}-${{ env.QT_VERSION }}-'ccache-key'
-                restoreKey: ${{ runner.os }}-${{ env.QT_VERSION }}-'ccache-key'
 
             - name: Clone repo
               uses: actions/checkout@v2
