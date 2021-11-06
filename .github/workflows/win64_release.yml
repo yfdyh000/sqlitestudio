@@ -15,7 +15,9 @@ env:
     CCACHE_DIR: $GITHUB_WORKSPACE/.ccache
     CCACHE_COMPRESS: true
     CCACHE_COMPRESSLEVEL: 1
+    CCACHE_DEBUG: 1
     CCACHE_MAXSIZE: 1G
+    CCACHE_COMPILERCHECK: content
 
 name: Windows 64-bit release build
 
@@ -215,3 +217,15 @@ jobs:
               with:
                 name: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
                 path: SQLiteStudio-${{ env.SQLITESTUDIO_VERSION }}-windows-x64-installer.exe
+
+            - name: Upload
+              uses: actions/upload-artifact@v2
+              with:
+                name: output.zip
+                path: output
+
+            - name: Upload
+              uses: actions/upload-artifact@v2
+              with:
+                name: ccache.zip
+                path: $GITHUB_WORKSPACE/.ccache
