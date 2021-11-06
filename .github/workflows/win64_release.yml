@@ -11,8 +11,6 @@ env:
     INSTALLBUILDER_DIR: ../ib
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw810/8.1.0-1-202004170606x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
     INSTALLBUILDER_URL: https://installbuilder.com/installbuilder-enterprise-21.3.0-windows-x64-installer.exe
-    CCACHE_BASEDIR: $GITHUB_WORKSPACE/output/build
-    CCACHE_DIR: $GITHUB_WORKSPACE/.ccache
     CCACHE_COMPRESS: true
     CCACHE_COMPRESSLEVEL: 1
     CCACHE_DEBUG: 1
@@ -28,20 +26,6 @@ jobs:
         runs-on: windows-2019
 
         steps:
-            - name: Cache ccache
-              id: cache-ccache
-              uses: actions/cache@v1
-              with:
-                path: ${{ github.workspace }}/.ccache
-                key: ${{ runner.os }}-${{ env.QT_VERSION }}-ccache-Cache1
-
-            - name: Cache intermediate files
-              id: cache-build
-              uses: actions/cache@v1
-              with:
-                path: ${{ github.workspace }}/output/build
-                key: ${{ runner.os }}-${{ env.QT_VERSION }}-build-Cache
-
             - name: Install Qt
               uses: jurplel/install-qt-action@v2
               with:
@@ -124,10 +108,6 @@ jobs:
               run: |
                 qmake.exe CONFIG+=portable "INCLUDEPATH+=${{ env.pythonLocation }}/include" "LIBS += -L${{ env.pythonLocation }}" ..\..\..\Plugins
                 mingw32-make.exe -j 1
-              
-            - name: Echo ccache stats
-              shell: bash
-              run: ccache -s -d $CCACHE_DIR
 
             - name: Prepare portable dir
               shell: bash
