@@ -10,9 +10,7 @@ env:
 
 name: MacOSX release build
 
-on:
-    repository_dispatch:
-        types: [mac_release]
+on: push
 
 jobs:
     build:

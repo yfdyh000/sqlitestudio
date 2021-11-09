@@ -14,9 +14,7 @@ env:
 
 name: Windows 32-bit release build
 
-on:
-    repository_dispatch:
-        types: [win32_release]
+on: push
 
 jobs:
     build:

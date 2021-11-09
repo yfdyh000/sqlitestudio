@@ -14,9 +14,7 @@ env:
 
 name: Windows 64-bit release build
 
-on:
-    repository_dispatch:
-        types: [win64_release]
+on: push
 
 jobs:
     build:

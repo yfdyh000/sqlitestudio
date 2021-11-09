@@ -10,9 +10,7 @@ env:
 
 name: Linux release build
 
-on:
-    repository_dispatch:
-        types: [lin_release]
+on: push
 
 jobs:
     build:
